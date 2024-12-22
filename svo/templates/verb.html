@@ -1,0 +1,97 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Choose a {{ step }}</h2>
+
+<form method="post">
+  <label for="tense">Choose tense:</label>
+  <select id="tense" name="tense" onchange="filterOptions()">
+    <option value="present" selected>Present</option>
+    <option value="past">Past</option>
+    <option value="perfect">Perfect</option>
+    <option value="continuous">Continuous</option>
+  </select>
+
+  <div class="options-container">
+    <div class="options-column" data-type="present">
+      {% for option in options.present %}
+      <div class="option-container">
+        <input
+          type="radio"
+          id="{{ option.id }}"
+          name="option"
+          value="{{ option.word }}"
+          required
+        />
+        <label for="{{ option.id }}">{{ option.word }}</label>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="options-column" data-type="past">
+      {% for option in options.past %}
+      <div class="option-container">
+        <input
+          type="radio"
+          id="{{ option.id }}"
+          name="option"
+          value="{{ option.word }}"
+          required
+        />
+        <label for="{{ option.id }}">{{ option.word }}</label>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="options-column" data-type="perfect">
+      {% for option in options.perfect %}
+      <div class="option-container">
+        <input
+          type="radio"
+          id="{{ option.id }}"
+          name="option"
+          value="{{ option.word }}"
+          required
+        />
+        <label for="{{ option.id }}">{{ option.word }}</label>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="options-column" data-type="continuous">
+      {% for option in options.continuous %}
+      <div class="option-container">
+        <input
+          type="radio"
+          id="{{ option.id }}"
+          name="option"
+          value="{{ option.word }}"
+          required
+        />
+        <label for="{{ option.id }}">{{ option.word }}</label>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <button type="submit">Next</button>
+</form>
+
+<script>
+  function filterOptions() {
+    var selectedType = document.getElementById("tense").value;
+    var options = document.querySelectorAll(".options-column");
+
+    options.forEach(function (option) {
+      if (option.getAttribute("data-type") === selectedType) {
+        option.style.display = "block";
+      } else {
+        option.style.display = "none";
+      }
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    filterOptions();
+  });
+</script>
+
+{% endblock %}

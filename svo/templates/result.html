@@ -1,0 +1,5 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Your Sentence</h2>
+<p>{{ sentence }}</p>
+<a href="{{ url_for('home') }}" class="button">Build Another Sentence</a>
+{% endblock %}

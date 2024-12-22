@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Current step: {{ current_step }}</h2>
+<form method="post">
+  {% for step in possible_steps %}
+  <div>
+    <input
+      type="radio"
+      id="{{ step.step }}"
+      name="step"
+      value="{{ step.step }}"
+      required
+    />
+    <label for="{{ step.step }}">{{ step.display_name }}</label>
+  </div>
+  {% endfor %}
+  <button type="submit">Next</button>
+</form>
+{% endblock %}

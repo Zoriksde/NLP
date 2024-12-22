@@ -1,0 +1,5 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Welcome to Sentence Builder</h2>
+<p>Click the button below to start building your sentence!</p>
+<a href="{{ url_for('steps', step='start') }}" class="button">Start</a>
+{% endblock %}

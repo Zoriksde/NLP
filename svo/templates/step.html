@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Choose a {{ step }}</h2>
+<form method="post">
+  {% for option in options %}
+  <div>
+    <input
+      type="radio"
+      id="{{ option.id }}"
+      name="option"
+      value="{{ option.word }}"
+      required
+    />
+    <label for="{{ option.id }}">{{ option.word }}</label>
+  </div>
+  {% endfor %}
+  <button type="submit">Next</button>
+</form>
+{% endblock %}

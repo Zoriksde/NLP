@@ -1,0 +1,65 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Choose a {{ step }}</h2>
+
+<label for="word-type">Choose word type:</label>
+<select id="word-type" onchange="filterOptions()">
+  <option value="singular" selected>Singular</option>
+  <option value="plural">Plural</option>
+</select>
+
+<form method="post">
+  <div class="options-container">
+    <div class="options-column" data-type="singular">
+      {% for option in options.singular %}
+      <div class="option-container">
+        <input
+          type="radio"
+          id="{{ option.id }}"
+          name="option"
+          value="{{ option.word }}"
+          required
+        />
+        <label for="{{ option.id }}">{{ option.word }}</label>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="options-column" data-type="plural">
+      {% for option in options.plural %}
+      <div class="option-container">
+        <input
+          type="radio"
+          id="{{ option.id }}"
+          name="option"
+          value="{{ option.word }}"
+          required
+        />
+        <label for="{{ option.id }}">{{ option.word }}</label>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <button type="submit">Next</button>
+</form>
+
+<script>
+  function filterOptions() {
+    var selectedType = document.getElementById("word-type").value;
+    var options = document.querySelectorAll(".options-column");
+
+    options.forEach(function (option) {
+      if (option.getAttribute("data-type") === selectedType) {
+        option.style.display = "block";
+      } else {
+        option.style.display = "none";
+      }
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    filterOptions();
+  });
+</script>
+
+{% endblock %}
